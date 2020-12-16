@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>COVID-19 API Testing</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<meta name="title" content="COVID-19 API Testing">
+    <meta name="revisit-after" content="3 days">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="COVID-19,API,Myanmar">
+    <meta name="description" content="This is the web page where you can find COVID-19 data related to Myanmar(Burma), 
+    using API.">
+    <meta property="og:description" content="This is the web page where you can find COVID-19 data related to Myanmar(Burma),using API." />
+    <meta property="og:title" content="COVID-19 API Testing" />
+    <meta property="og:url" content="https://covid-19api-site.netlify.app/" />
+    <meta property="og:type" content="api testing web page" />
+
+	<style>
+		body{
+			text-align: center;
+		}
+		.row{
+			display: block;
+			width: 100%;
+		}
+		.col-md-6{
+			width: 50%;
+			float: left;
+		}
+		#footer{
+			font-size: 16px;
+            font-weight: bold;
+            font-family: sans-serif;
+		}
+		@media (min-width: 320px) and (max-width: 900px){
+           body{
+           	 font-size: 11px;
+           }
+           #country{
+           	font-size: 25px;
+           }
+           .date{
+           	font-size: 15px!important;
+           }
+           #footer{
+           	font-size: 14px!important;
+           }
+		}
+		@media (min-width: 320px) and (max-width: 426px){
+          .col-sm-12{
+			width: 100%;
+		   }
+		}
+	</style>
+</head>
+<body>
+	<h1 id="country">Country</h1>
+	<h1 class="date" style="font-size: 20px;">Last Updated on
+	 <span id="date">Date</span></h1>
+	<div class="row">
+	<div class="col-md-6 col-sm-12">
+	<h1 style="color: #03A9F4;">Confirmed Cases</h1>
+	<h1 id="data">0</h1>
+    </div>
+    <div class="col-md-6 col-sm-12">
+	<h1 style="color: #03A9F4;">New Confirmed Cases</h1>
+	<h1 id="ndata">0</h1>
+    </div>
+    </div>
+    <div class="row">
+	<div class="col-md-6 col-sm-12">
+	<h1 style="color:#8dcc44">Recovered Cases</h1>
+	<h1 id="data1">0</h1>
+    </div>
+	<div class="col-md-6 col-sm-12">
+	<h1 style="color:#8dcc44">New Recovered Cases</h1>
+	<h1 id="ndata1">0</h1>
+    </div>
+    </div>
+	<div class="row">
+	<div class="col-md-6 col-sm-12">
+	<h1 style="color: #eb4e4e">Death Toll</h1>
+	<h1 id="data2">0</h1>
+    </div>
+    <div class="col-md-6 col-sm-12">
+	<h1 style="color: #eb4e4e">New Death Toll</h1>
+	<h1 id="ndata2">0</h1>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-12">
+    <div id="footer">
+     Data Source: <a href="https://api.covid19api.com/summary">COVID-19 API</a>
+     | Developed by <a href="https://github.com/Min276">Min Khant Kyaw</a>
+    </div>
+    </div>
+    </div>
+	<script>
+		fetch("https://api.covid19api.com/summary")
+		.then(res => res.json())
+		.then(data =>{
+			const global = data.Global
+			const allCountries = data.Countries
+			const myanmar = allCountries.find(c=> c.Country === "Myanmar")
+
+			console.log("Global:", global, "Myanmar:", myanmar);
+             document.getElementById("country").innerHTML = myanmar.Country;
+             document.getElementById("date").innerHTML = myanmar.Date;
+			document.getElementById("data").innerHTML = myanmar.TotalConfirmed;
+			document.getElementById("ndata").innerHTML = myanmar.NewConfirmed;
+			document.getElementById("data1").innerHTML = myanmar.TotalRecovered;
+			document.getElementById("ndata1").innerHTML = myanmar.NewRecovered;
+			document.getElementById("data2").innerHTML = myanmar.TotalDeaths;
+			document.getElementById("ndata2").innerHTML = myanmar.NewDeaths;
+
+		});
+		
+	</script>
+
+</body>
+</html>
