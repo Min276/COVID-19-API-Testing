@@ -1,0 +1,35 @@
+body{
+			text-align: center;
+		}
+		.row{
+			display: block;
+			width: 100%;
+		}
+		.col-md-6{
+			width: 50%;
+			float: left;
+		}
+		#footer{
+			font-size: 16px;
+            font-weight: bold;
+            font-family: sans-serif;
+		}
+		@media (min-width: 320px) and (max-width: 900px){
+           body{
+           	 font-size: 11px;
+           }
+           #country{
+           	font-size: 25px;
+           }
+           .date{
+           	font-size: 15px!important;
+           }
+           #footer{
+           	font-size: 14px!important;
+           }
+		}
+		@media (min-width: 320px) and (max-width: 426px){
+          .col-sm-12{
+			width: 100%;
+		   }
+		}

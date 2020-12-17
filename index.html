@@ -8,50 +8,13 @@
     <meta name="revisit-after" content="3 days">
     <meta name="robots" content="index, follow">
     <meta name="keywords" content="COVID-19,API,Myanmar">
-    <meta name="description" content="This is the web page where you can find COVID-19 data related to Myanmar(Burma), 
-    using API.">
-    <meta property="og:description" content="This is the web page where you can find COVID-19 data related to Myanmar(Burma),using API." />
+    <meta name="description" content="This is the web page where all Updated Information used COVID-19 API mention the situation of Coronavirus in Myanmar.">
+    <meta property="og:description" content="This is the web page where all Updated Information used COVID-19 API mention the situation of Coronavirus in Myanmar." />
     <meta property="og:title" content="COVID-19 API Testing" />
     <meta property="og:url" content="https://covid-19api-site.netlify.app/" />
     <meta property="og:type" content="api testing web page" />
-
-	<style>
-		body{
-			text-align: center;
-		}
-		.row{
-			display: block;
-			width: 100%;
-		}
-		.col-md-6{
-			width: 50%;
-			float: left;
-		}
-		#footer{
-			font-size: 16px;
-            font-weight: bold;
-            font-family: sans-serif;
-		}
-		@media (min-width: 320px) and (max-width: 900px){
-           body{
-           	 font-size: 11px;
-           }
-           #country{
-           	font-size: 25px;
-           }
-           .date{
-           	font-size: 15px!important;
-           }
-           #footer{
-           	font-size: 14px!important;
-           }
-		}
-		@media (min-width: 320px) and (max-width: 426px){
-          .col-sm-12{
-			width: 100%;
-		   }
-		}
-	</style>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="fetch.api.js"></script>
 </head>
 <body>
 	<h1 id="country">Country</h1>
@@ -105,47 +68,5 @@
     </div>
     </div>
     </div>
-	<script>
-		fetch("https://api.covid19api.com/summary")
-		.then(res => res.json())
-		.then(data =>{
-			const global = data.Global
-			const allCountries = data.Countries
-			const myanmar = allCountries.find(c=> c.Country === "Myanmar")
-
-			console.log("Myanmar:", myanmar);
-             // document.getElementById("country").innerHTML = myanmar.Country;
-             document.getElementById("date").innerHTML = myanmar.Date;
-			// document.getElementById("data").innerHTML = myanmar.TotalConfirmed;
-			document.getElementById("ndata").innerHTML = myanmar.NewConfirmed;
-			// document.getElementById("data1").innerHTML = myanmar.TotalRecovered;
-			document.getElementById("ndata1").innerHTML = myanmar.NewRecovered;
-			// document.getElementById("data2").innerHTML = myanmar.TotalDeaths;
-			document.getElementById("ndata2").innerHTML = myanmar.NewDeaths;
-
-		});
-		fetch("https://coronavirus-19-api.herokuapp.com/countries/Myanmar")
-
-
-		.then(res => res.json())
-		.then(data =>{
-
-			
-
-			console.log( "Myanmar:", data);
-             document.getElementById("country").innerHTML = data.country;
-             document.getElementById("tdata").innerHTML = data.totalTests;
-             document.getElementById("tdata1").innerHTML = data.active;
-			document.getElementById("data").innerHTML = data.cases;
-			// document.getElementById("ndata").innerHTML = data.todayCases;
-			document.getElementById("data1").innerHTML = data.recovered;
-			document.getElementById("data2").innerHTML = data.deaths;
-			// document.getElementById("ndata2").innerHTML = data.todayDeaths;
-
-		});
-		
-		
-	</script>
-
 </body>
 </html>
